@@ -1,0 +1,92 @@
+.titleDiv{
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 400;
+    background: white;
+}
+.zindex1{
+    position: relative;
+    z-index: 1;
+}
+.leftMenu{
+    position: relative;
+    z-index: 2;
+    background: #eaecef;
+}
+
+
+.main  {
+    background: #eaeaea;
+}
+
+.minH600 {
+    min-height: 600px;
+}
+
+.label{
+    margin-top: 8px !important;
+    color: white !important;
+}
+
+.card{
+  border-radius: 0;
+}
+
+.height350{
+  height: 350px;
+}
+
+.verticle-text{
+   writing-mode: vertical-rl;
+   text-orientation: upright;
+}
+.profileTitleDiv{
+  padding-top:80px;
+}
+
+.profileTitleDiv h3{
+  color:white;
+  font-weight: 400;
+}
+
+
+.rowHeight{
+  height: calc(100% - 140px);
+}
+
+.jumbotron {
+    padding: 2rem 2rem !important;
+}
+
+.imageDiv{
+  height: 150px;
+  width:200px;
+  margin:0 auto;
+  margin-top: 100px;
+  background-size:cover;
+  background-image: url('../../../assets/images/2-4B.png');
+}
+
+.firstLeft{
+  top:50px;
+  left:20px;
+}
+
+.firstRight{
+  top:50px;
+  right:20px;
+}
+
+.secondLeft{
+  bottom:50px;
+  left:20px;
+}
+.secondRight{
+  bottom:50px;
+  right:20px;
+}
+
+h5{
+  font-weight: 400;
+}

@@ -1,0 +1,34 @@
+
+<div class="loginWrapper">
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Sign In </h2>
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="../../../assets/images/loginIcon.jpg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form id="form-login" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" ngNativeValidate>
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="User Name"  ngModel required />
+
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" ngModel required/>
+
+      <input type="submit" class="fadeIn fourth"  type="submit" value="Sign in" />
+    </form>
+
+    <div *ngIf="!validUser" class="redColor padding15">
+      UserName or Password is invalid.
+    </div>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+
+  </div>
+</div>
+</div>

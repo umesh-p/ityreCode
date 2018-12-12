@@ -1,0 +1,519 @@
+<div class="row fullHeight">
+<div class="col-lg-2 col-md-3 card-right-box-shadow leftMenu pr-0">
+   <app-drawer></app-drawer>
+</div>
+<div class="col-lg-10 col-md-9 main">
+   <div class="row card-light-box-shadow zindex1">
+      <div class="col-md-12">
+         <app-header></app-header>
+      </div>
+   </div>
+   <div class="row titleDiv blackColor card-light-box-shadow ">
+      <div class="col-md-12">
+         Analysis: <strong>Dashboard</strong>
+      </div>
+   </div>
+   <div class="row rowHeight overflowYAuto style-4">
+      <div class="col-md-12 col-lg-12 col-xl-12 noPadding mt-2 ">
+         <div class="card mt-2 mb-2 mr-3 ml-1">
+            <div class="card-body">
+               <div class="row">
+                  <div class="col">
+                     <ng-select autofocus [items]="allCustomers" name="customer" [(ngModel)]="dashboardData.customer" required placeholder="Customer Name"></ng-select>
+                  </div>
+                  <div class="col">
+                     <ng-select autofocus [items]="manufacturers" name="manufacturer" [(ngModel)]="dashboardData.manufacturer" required placeholder="Vehicle Manufacturers"></ng-select>
+                  </div>
+                  <div class="col">
+                     <ng-select autofocus [items]="models" name="Model" [(ngModel)]="dashboardData.model" required placeholder="Vehicle Model"></ng-select>
+                  </div>
+                  <div class="col">
+                     <ng-select autofocus [items]="tyreManufacturers" name="tyreManufacturer" [(ngModel)]="dashboardData.tyreManufacturer" required placeholder="Tyre Manufacturer"></ng-select>
+                  </div>
+                  <div class="col">
+                     <ng-select autofocus [items]="durationOpt" name="duration" [(ngModel)]="dashboardData.duration" #selectedCustomer="ngModel" required placeholder="Duration"></ng-select>
+                  </div>
+                  <div class="col">
+                     <ng-select autofocus [items]="trips" name="trip" [(ngModel)]="dashboardData.trip" #selectedCustomer="ngModel" required placeholder="Trip Type"></ng-select>
+                  </div>
+                  <div class="col text-center">
+                     <button type="button" class="btn btn-primary btn-sm waves-light" mdbWavesEffect (click)="onShowDashboard()">Show Data</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="jumbotron mt-3 mb-2 mr-3 ml-1" *ngIf="showDashboardData">
+             <h3><strong>Data Overview For All Vehicles !</strong></h3>
+             <p class="lead">Overview Of existing Vehicle and Fleet Data</p>
+             <hr class="my-1">
+             <div class="row p-4">
+                <div class="col-md-4 col-lg-4 col-xl-4 rightBorder">
+                   <div class="row p-1 mt-3">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"> <span class="badge yellow">1</span>&nbsp;&nbsp;&nbsp;Vehicle Manufacturers Registered</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">3,432</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge red">2</span>&nbsp;&nbsp;&nbsp;Tyre Manufacturers Registered</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">2,345</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"> <span class="badge blue">3</span>&nbsp;&nbsp;&nbsp;Total Vehicles</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">34,345</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge yellow">4</span>&nbsp;&nbsp;&nbsp;Total Inspections</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">3,880</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge green">5</span>&nbsp;&nbsp;&nbsp;Total Tyres</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">97,688</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge blue">6</span>&nbsp;&nbsp;&nbsp;Total Tyres To Serve</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">67,880</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge indigo">7</span>&nbsp;&nbsp;&nbsp;Total Tyres Replaced</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">27,880</div>
+                   </div>
+                   <hr/>
+                   <div class="row p-1">
+                      <div class="col-md-8 col-xl-8 col-lg-8 fontSize16 fontWeight500"><span class="badge green">8</span>&nbsp;&nbsp;&nbsp;New Tyres Required</div>
+                      <div class="col-md-4 col-xl-4 col-lg-4 text-right fontSize16 fontWeight500">2000</div>
+                   </div>
+
+                </div>
+
+                <div class="col-md-8 col-lg-8 col-xl-8">
+                  <div class="row">
+                    <div class="col-md-4 col-lg-4 col-xl-4 ml-md-auto">
+                      <div class="card text-center" >
+                          <div class="card-header success-color white-text">
+                              All Dismounted Tyres
+                          </div>
+                          <div class="card-body">
+                              <h4 class="card-title pb-3">Avg. Milage</h4>
+                              <h4>2343.00 Km</h4>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-8 col-lg-8 col-xl-8 ml-md-auto">
+                      <div class="card ">
+                          <div class="card-header deep-orange lighten-1 white-text text-center">
+                              Tyre Projections
+                          </div>
+                          <div class="card-body">
+                            <div class="row p-1">
+                               <div class="col-md-9 col-xl-9 col-lg-9 fontSize16 fontWeight500"><span class="badge green">1</span>&nbsp;&nbsp;&nbsp;Tyres reaching profile depth of 3 mm in next 3 months</div>
+                               <div class="col-md-3 col-xl-3 col-lg-3 text-right fontSize16 fontWeight500">: 1,688</div>
+                            </div>
+                            <div class="row p-1">
+                               <div class="col-md-9 col-xl-9 col-lg-9  fontSize16 fontWeight500"><span class="badge indigo">2</span>&nbsp;&nbsp;&nbsp;Tyres reaching profile depth of 3 mm in next 6 months</div>
+                               <div class="col-md-3 col-xl-3 col-lg-3 text-right fontSize16 fontWeight500">: 2,880</div>
+                            </div>
+                            <div class="row p-1">
+                               <div class="col-md-9 col-xl-9 col-lg-9 fontSize16 fontWeight500"><span class="badge indigo">3</span>&nbsp;&nbsp;&nbsp;Tyres reaching profile depth of 3 mm in next 9 months</div>
+                               <div class="col-md-3 col-xl-3 col-lg-3 text-right fontSize16 fontWeight500">: 4,880</div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row p-2 ">
+                     <div class="col text-center">
+                        <circle-progress
+                        [percent]="10000"
+                        [maxPercent]="10000000"
+                        [radius]="50"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="2"
+                        [outerStrokeColor]="'#4882c2'"
+                        [innerStrokeColor]="'#e7e8ea'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                        [showUnits]="false"
+                        [showSubtitle]="false"
+                        ></circle-progress>
+                     </div>
+                     <div class="col text-center">
+                        <circle-progress
+                        [percent]="3"
+                        [maxPercent]="3"
+                        [radius]="50"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="2"
+                        [outerStrokeColor]="'#FF6347'"
+                        [innerStrokeColor]="'#e7e8ea'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                        [showUnits]="false"
+                        [showSubtitle]="false"
+                        ></circle-progress>
+                     </div>
+                     <div class="col text-center">
+                        <circle-progress
+                        [percent]="20"
+                        [maxPercent]="1000"
+                        [radius]="50"
+                        [outerStrokeWidth]="10"
+                        [innerStrokeWidth]="2"
+                        [outerStrokeColor]="'#78C000'"
+                        [innerStrokeColor]="'#e7e8ea'"
+                        [animation]="true"
+                        [animationDuration]="300"
+                        [showUnits]="false"
+                        [showSubtitle]="false"
+                        [title]="$"
+                        ></circle-progress>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col text-center fontWeight500">
+                        <h5>{{"Avg Distance Travelled" | uppercase }} <br> 10000 KM</h5>
+                     </div>
+                     <div class="col text-center fontWeight500">
+                        <h5>{{"Price/Km Each Tyre All Vehicle" | uppercase}} : {{3.00 | currency :'EUR'}}</h5>
+                     </div>
+                     <div class="col text-center fontWeight500">
+                        <h5>{{"Price/Km All Vehicle" | uppercase }} : {{20.00 | currency :'EUR'}}</h5>
+                     </div>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+         </div>
+
+         <div class="card mt-3 mb-2 mr-3 ml-1" *ngIf="showDashboardData">
+            <div class="card-body noPadding">
+               <div class="row p-4">
+                  <div class="col-md-3 col-lg-3 col-xl-3">
+                     <h4>  Welcome {{dashboardData.customer}} ,</h4>
+                     <h6> Please check out your vehicle and tyre statistics</h6>
+
+                     <div class="row p-1 mt-5">
+                        <div class="col-md-6 col-xl-6 col-lg-6 fontSize16 fontWeight500"> <span class="badge yellow">1</span>&nbsp;&nbsp;&nbsp;Vehicle Manufacturer</div>
+                        <div class="col-md-6 col-xl-6 col-lg-6 text-right fontSize16 fontWeight500">{{dashboardData.manufacturer}}</div>
+                     </div>
+                     <hr/>
+                     <div class="row p-1">
+                        <div class="col-md-6 col-xl-6 col-lg-6 fontSize16 fontWeight500"><span class="badge red">2</span>&nbsp;&nbsp;&nbsp;Vehicle Model</div>
+                        <div class="col-md-6 col-xl-6 col-lg-6 text-right fontSize16 fontWeight500">{{dashboardData.model}}</div>
+                     </div>
+                     <hr/>
+                     <div class="row p-1">
+                        <div class="col-md-6 col-xl-6 col-lg-6 fontSize16 fontWeight500"> <span class="badge blue">3</span>&nbsp;&nbsp;&nbsp;Tyre Manufacturer</div>
+                        <div class="col-md-6 col-xl-6 col-lg-6 text-right fontSize16 fontWeight500">{{dashboardData.tyreManufacturer}}</div>
+                     </div>
+                     <hr/>
+                     <div class="row p-1">
+                        <div class="col-md-6 col-xl-6 col-lg-6 fontSize16 fontWeight500"><span class="badge green">4</span>&nbsp;&nbsp;&nbsp;Duration</div>
+                        <div class="col-md-6 col-xl-6 col-lg-6 text-right fontSize16 fontWeight500">{{dashboardData.duration}}</div>
+                     </div>
+                     <hr/>
+                     <div class="row p-1">
+                        <div class="col-md-6 col-xl-6 col-lg-6 fontSize16 fontWeight500"><span class="badge indigo">5</span>&nbsp;&nbsp;&nbsp;Trip Type</div>
+                        <div class="col-md-6 col-xl-6 col-lg-6 text-right fontSize16 fontWeight500">{{dashboardData.trip}}</div>
+                     </div>
+                     <hr/>
+                  </div>
+                  <div class="col-md-9 col-lg-9 col-xl-9">
+                     <div class="row">
+                        <div class="col-md-8 col-lg-8 col-xl-8 rightBorder">
+                           <div class="row pl-4 pr-4">
+                              <div class="col text-center fontWeight500">
+                                 <h5>{{"Total KM Travelled" | uppercase }} <br> 13123 KM</h5>
+                              </div>
+                              <div class="col text-center fontWeight500">
+                                 <h5>{{"Price/Km Each Tyre" | uppercase}} : {{5.00 | currency :'EUR'}}</h5>
+                              </div>
+                              <div class="col text-center fontWeight500">
+                                 <h5>{{"Price/Km Vehicle" | uppercase }} : {{25.00 | currency :'EUR'}}</h5>
+                              </div>
+                           </div>
+                           <div class="row p-4">
+                              <div class="col text-center">
+                                 <circle-progress
+                                 [percent]="13123"
+                                 [maxPercent]="10000000"
+                                 [radius]="65"
+                                 [outerStrokeWidth]="20"
+                                 [innerStrokeWidth]="4"
+                                 [outerStrokeColor]="'#4882c2'"
+                                 [innerStrokeColor]="'#e7e8ea'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                                 ></circle-progress>
+                              </div>
+                              <div class="col text-center">
+                                 <circle-progress
+                                 [percent]="5"
+                                 [maxPercent]="5"
+                                 [radius]="65"
+                                 [outerStrokeWidth]="20"
+                                 [innerStrokeWidth]="4"
+                                 [outerStrokeColor]="'#FF6347'"
+                                 [innerStrokeColor]="'#e7e8ea'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                                 ></circle-progress>
+                              </div>
+                              <div class="col text-center">
+                                 <circle-progress
+                                 [percent]="25"
+                                 [maxPercent]="25"
+                                 [radius]="65"
+                                 [outerStrokeWidth]="20"
+                                 [innerStrokeWidth]="4"
+                                 [outerStrokeColor]="'#78C000'"
+                                 [innerStrokeColor]="'#e7e8ea'"
+                                 [animation]="true"
+                                 [animationDuration]="300"
+                                 [showUnits]="false"
+                                 [showSubtitle]="false"
+                                 [title]="$"
+                                 ></circle-progress>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4 col-xl-4">
+                        </div>
+                     </div>
+                     <div class="row pl-4 pr-4">
+                        <table class="table">
+                           <!--Table head-->
+                           <thead class="mdb-color darken-3">
+                              <tr class="text-white ">
+                               <th>Tyre Cost/Km</th>
+                               <th>Total Tyre Cost/Km</th>
+                               <th>Service Cost/Km</th>
+                               <th>Total Service Cost/Km</th>
+                               <th>Fuel Consumption Cost/Km</th>
+                               <th>Insurance, Maintainance Cost/Km</th>
+                               <th>Maut cost/Km</th>
+                               <th>Driver salary & expenses/Km</th>
+                               <th>Total/Km</th>
+                              </tr>
+                           </thead>
+                           <!--Table head-->
+                           <!--Table body-->
+                           <tbody>
+                              <tr>
+                                  <td><b>{{05.2 | currency:'EUR'}}</b></td>
+                                  <td><b>{{20.8 | currency:'EUR'}}</b></td>
+                                  <td><b>{{10.0 | currency:'EUR'}}</b></td>
+                                  <td><b>{{40.0 | currency:'EUR'}}</b></td>
+                                  <td><b>{{56.8 | currency:'EUR'}}</b></td>
+                                  <td><b>{{30.0 | currency:'EUR'}}</b></td>
+                                  <td><b>{{20.2 | currency:'EUR'}}</b></td>
+                                  <td><b>{{80.0 | currency:'EUR'}}</b></td>
+                                  <td><b>{{274.0 | currency:'EUR'}}</b></td>
+                              </tr>
+                           </tbody>
+                           <!--Table body-->
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+
+        <div class="card mt-3 mb-2 mr-3 ml-1" *ngIf="showDashboardData">
+            <div class="row height350">
+              <div class="col-md-2 col-lg-2 mdb-color darken-3 text-center profileTitleDiv">
+
+                  <h3>Tyres </h3>
+                  <h3>Profile</h3>
+                  <h3>&</h3>
+                  <h3>History</h3>
+
+              </div>
+              <div class="col-md-3 col-lg-3 text-center relative rightBorder">
+
+
+                  <div class="imageDiv">
+                  </div>
+
+
+                  <div class="absolute firstLeft">
+                    <span class="badge badge-default p-1 fontSize14">6mm</span><br>
+                    <span class="badge badge-primary p-1 fontSize14">1L</span><br>
+                    <span class="badge badge-success p-1 fontSize14">8.9 Bars</span><br>
+                  </div>
+
+                  <div class="absolute firstRight">
+                    <span class="badge badge-default p-1 fontSize14">7mm</span><br>
+                    <span class="badge badge-primary p-1 fontSize14">1R</span><br>
+                    <span class="badge badge-success p-1 fontSize14">8.7 Bars</span><br>
+                  </div>
+
+
+                  <div class="absolute secondLeft">
+                    <span class="badge badge-default p-1 fontSize14">3mm</span><br>
+                    <span class="badge badge-primary p-1 fontSize14">2L</span><br>
+                    <span class="badge badge-success p-1 fontSize14">7.9 Bars</span><br>
+                  </div>
+
+                  <div class="absolute secondRight">
+                    <span class="badge badge-default p-1 fontSize14">8mm</span><br>
+                    <span class="badge badge-primary p-1 fontSize14">2R</span><br>
+                    <span class="badge badge-success p-1 fontSize14">8.9 Bars</span><br>
+                  </div>
+
+
+
+
+
+
+
+              </div>
+              <div class="col-md-7 col-lg-7">
+                <table class="table mt-4">
+
+                    <!--Table head-->
+                    <thead class="mdb-color darken-3">
+                        <tr class="text-white">
+                            <th>Tyre No</th>
+                            <td>KM Travelled</td>
+                            <td>No of Trips</td>
+                            <td>Milage</td>
+                            <td>Profile Index</td>
+                            <td>Befund</td>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>1232.00</td>
+                            <td>100</td>
+                            <td>1234</td>
+                            <td>0</td>
+                            <td>Good Condition</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>1345.00</td>
+                            <td>100</td>
+                            <td>1234</td>
+                            <td>A</td>
+                            <td>Good Condition</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>2345.00</td>
+                            <td>100</td>
+                            <td>1234</td>
+                            <td>A</td>
+                            <td>Need Replacement</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>145</td>
+                            <td>2</td>
+                            <td>1245</td>
+                            <td>0</td>
+                            <td>Replaced</td>
+                        </tr>
+                    </tbody>
+                    <!--Table body-->
+
+                </table>
+              </div>
+            </div>
+        </div>
+
+
+         <div class="card mt-3 mb-2 mr-3 ml-1 p-4" *ngIf="showDashboardData">
+            <div class="row card-body noPadding m-3">
+               <div class="col-md-4 col-lg-4 col-xl-4">
+                  <h4>Economy vs Temp & Economy vs Pressure</h4>
+                  <hr>
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th>#</th>
+                           <th>Parameter</th>
+                           <th>Max Economy</th>
+                           <th>Min Economy</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th scope="row">1</th>
+                           <td><b>Temprature</b></td>
+                           <td><b>31 &#8451;</b></td>
+                           <td><b>70 &#8451;</b></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">2</th>
+                           <td><b>Pressure</b></td>
+                           <td><b>8.7 Bars</b></td>
+                           <td><b>0 Bars</b></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-md-4 col-lg-4 col-xl-4 rightBorder">
+                  <canvas baseChart height="135" [datasets]="lineChartData1" [labels]="lineChartLabels1" [options]="lineChartOptions" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+               </div>
+               <div class="col-md-4 col-lg-4 col-xl-4">
+                  <canvas baseChart height="135" [datasets]="lineChartData2" [labels]="lineChartLabels2" [options]="lineChartOptions" [colors]="lineChartColors" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+               </div>
+            </div>
+         </div>
+         <div class="card mt-3 mb-2 mr-3 ml-1 p-4" *ngIf="showDashboardData">
+            <div class="row card-body noPadding  m-3">
+               <div class="col-md-4 col-lg-4 col-xl-4">
+                  <h4>Efficiency vs Temp & Efficiency vs Pressure</h4>
+                  <hr>
+                  <table class="table">
+                     <thead>
+                        <tr>
+                           <th>#</th>
+                           <th>Parameter</th>
+                           <th>Max Efficiency</th>
+                           <th>Min Efficiency</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <th scope="row">1</th>
+                           <td><b>Temprature</b></td>
+                           <td><b>31 &#8451;</b></td>
+                           <td><b>70 &#8451;</b></td>
+                        </tr>
+                        <tr>
+                           <th scope="row">2</th>
+                           <td><b>Pressure</b></td>
+                           <td><b>8.7 Bars</b></td>
+                           <td><b>0 Bars</b></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="col-md-4 col-lg-4 col-xl-4 rightBorder">
+                  <canvas baseChart height="135" [datasets]="lineChartData3" [labels]="lineChartLabels3" [options]="lineChartOptions" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+               </div>
+               <div class="col-md-4 col-lg-4 col-xl-4">
+                  <canvas baseChart height="135" [datasets]="lineChartData4" [labels]="lineChartLabels4" [options]="lineChartOptions" [colors]="lineChartColors" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
